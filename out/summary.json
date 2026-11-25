@@ -1,0 +1,170 @@
+{
+  "snapshot_date": "2026-11-25",
+  "source_protocols": "https://api.llama.fi/protocols",
+  "source_fees": "https://api.llama.fi/overview/fees",
+  "total_protocols": 9110,
+  "with_token": 4623,
+  "no_token_candidates": 2291,
+  "top_20": [
+    {
+      "rank": 1,
+      "name": "Gauntlet",
+      "category": "Risk Curators",
+      "tvl_usd": 1568547025,
+      "fees_24h_usd": 122158,
+      "score": 56.1
+    },
+    {
+      "rank": 2,
+      "name": "Sentora Curator",
+      "category": "Risk Curators",
+      "tvl_usd": 2668886014,
+      "fees_24h_usd": 188251,
+      "score": 53.5
+    },
+    {
+      "rank": 3,
+      "name": "Veda",
+      "category": "Onchain Capital Allocator",
+      "tvl_usd": 1416132171,
+      "fees_24h_usd": 164634,
+      "score": 53.1
+    },
+    {
+      "rank": 4,
+      "name": "Polymarket International",
+      "category": "Prediction Market",
+      "tvl_usd": 318120197,
+      "fees_24h_usd": 1017902,
+      "score": 52.4
+    },
+    {
+      "rank": 5,
+      "name": "Upshift",
+      "category": "Onchain Capital Allocator",
+      "tvl_usd": 488587866,
+      "fees_24h_usd": 105488,
+      "score": 49.3
+    },
+    {
+      "rank": 6,
+      "name": "Tydro",
+      "category": "Lending",
+      "tvl_usd": 394800724,
+      "fees_24h_usd": 33823,
+      "score": 49.1
+    },
+    {
+      "rank": 7,
+      "name": "CommunityV3",
+      "category": "Dexs",
+      "tvl_usd": 31614323,
+      "fees_24h_usd": 62325,
+      "score": 46.4
+    },
+    {
+      "rank": 8,
+      "name": "CIAN Yield Layer",
+      "category": "Yield Aggregator",
+      "tvl_usd": 258023105,
+      "fees_24h_usd": 29260,
+      "score": 46.1
+    },
+    {
+      "rank": 9,
+      "name": "RockawayX",
+      "category": "Risk Curators",
+      "tvl_usd": 267877345,
+      "fees_24h_usd": 28046,
+      "score": 43.6
+    },
+    {
+      "rank": 10,
+      "name": "OnRe",
+      "category": "RWA",
+      "tvl_usd": 289918997,
+      "fees_24h_usd": 74771,
+      "score": 43.1
+    },
+    {
+      "rank": 11,
+      "name": "AZverse Perps",
+      "category": "Derivatives",
+      "tvl_usd": 51959943,
+      "fees_24h_usd": 55227,
+      "score": 43
+    },
+    {
+      "rank": 12,
+      "name": "Extended Perps",
+      "category": "Derivatives",
+      "tvl_usd": 90695010,
+      "fees_24h_usd": 20733,
+      "score": 41.9
+    },
+    {
+      "rank": 13,
+      "name": "Accountable",
+      "category": "Uncollateralized Lending",
+      "tvl_usd": 3664775,
+      "fees_24h_usd": 86570,
+      "score": 40.6
+    },
+    {
+      "rank": 14,
+      "name": "Curvance",
+      "category": "Lending",
+      "tvl_usd": 138348825,
+      "fees_24h_usd": 14057,
+      "score": 40.4
+    },
+    {
+      "rank": 15,
+      "name": "Ember",
+      "category": "RWA",
+      "tvl_usd": 83851458,
+      "fees_24h_usd": 15624,
+      "score": 40.3
+    },
+    {
+      "rank": 16,
+      "name": "Defi Saver Asset Management",
+      "category": "CDP Manager",
+      "tvl_usd": 213175611,
+      "fees_24h_usd": 3729,
+      "score": 39.2
+    },
+    {
+      "rank": 17,
+      "name": "Lagoon",
+      "category": "Onchain Capital Allocator",
+      "tvl_usd": 149354389,
+      "fees_24h_usd": 2271,
+      "score": 38.6
+    },
+    {
+      "rank": 18,
+      "name": "Arcus Perps",
+      "category": "Derivatives",
+      "tvl_usd": 55874094,
+      "fees_24h_usd": 48096,
+      "score": 37.8
+    },
+    {
+      "rank": 19,
+      "name": "Clearstar",
+      "category": "Risk Curators",
+      "tvl_usd": 138930085,
+      "fees_24h_usd": 11505,
+      "score": 37.6
+    },
+    {
+      "rank": 20,
+      "name": "Hyperithm",
+      "category": "Risk Curators",
+      "tvl_usd": 183933247,
+      "fees_24h_usd": 14855,
+      "score": 37.4
+    }
+  ]
+}
