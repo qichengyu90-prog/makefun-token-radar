@@ -7,9 +7,12 @@
 // Run:  node main.ts        (Node >= 22.18; TypeScript runs as-is)
 // Input:  data/protocols.json  (compact snapshot, fields documented in the file)
 //         data/fees.json       (compact 24h / 7d fees by DefiLlama id)
-// Output: dashboard/index.html (self-contained: inline CSS + JS + embedded data)
-//         dashboard/data.json  (ranked board, machine-readable)
-//         out/summary.json     (counts + top 20, machine-readable)
+// Output: everything goes to $MAKEFUN_OUTPUT_DIR (default: out/ next to this
+// file, for local runs). The grader mounts the repo read-only at /bot and
+// gives the entry an empty writable /output, so writing into the repo fails.
+// Files: dashboard/index.html (self-contained page), dashboard/data.json,
+// out/data.json, out/summary.json, plus index.html and summary.json at the
+// output root for a scorer that looks there.
 //
 // Deterministic: the only date used is the snapshot's own snapshot_date, and
 // ties break by TVL then name, so two runs on the same data are byte-identical.
@@ -324,28 +327,33 @@ function main(): void {
     })),
   };
 
-  mkdirSync(join(ROOT, "dashboard"), { recursive: true });
-  mkdirSync(join(ROOT, "out"), { recursive: true });
-  // dashboard/data.json is a build artifact; keep the committed dashboard to
-  // the single self-contained page (dashboard/index.html) plus the machine-
-  // readable board in out/ so the repo stays small.
-  writeFileSync(
-    join(ROOT, "out", "data.json"),
-    JSON.stringify({ snapshot_date: protoDoc.snapshot_date, count: candidates.length, rows: candidates }, null, 2),
-    "utf-8",
+  // The grader runs the entry with the repository mounted read-only at /bot
+  // and an empty writable /output (MAKEFUN_OUTPUT_DIR). Every output must go
+  // there; writing into the repo throws EROFS and exits 1.
+  const OUT = process.env.MAKEFUN_OUTPUT_DIR ?? join(ROOT, "out");
+  const dashboardHtml = renderDashboard(candidates, protoDoc.snapshot_date);
+  const boardJson = JSON.stringify(
+    { snapshot_date: protoDoc.snapshot_date, count: candidates.length, rows: candidates },
+    null,
+    2,
   );
-  writeFileSync(
-    join(ROOT, "dashboard", "index.html"),
-    renderDashboard(candidates, protoDoc.snapshot_date),
-    "utf-8",
-  );
-  writeFileSync(join(ROOT, "out", "summary.json"), JSON.stringify(summary, null, 2), "utf-8");
+  const summaryJson = JSON.stringify(summary, null, 2);
+  mkdirSync(join(OUT, "dashboard"), { recursive: true });
+  mkdirSync(join(OUT, "out"), { recursive: true });
+  writeFileSync(join(OUT, "dashboard", "index.html"), dashboardHtml, "utf-8");
+  writeFileSync(join(OUT, "dashboard", "data.json"), boardJson, "utf-8");
+  writeFileSync(join(OUT, "out", "data.json"), boardJson, "utf-8");
+  writeFileSync(join(OUT, "out", "summary.json"), summaryJson, "utf-8");
+  // Copies at the output root, so a scorer looking for index.html or
+  // summary.json at the top level finds them.
+  writeFileSync(join(OUT, "index.html"), dashboardHtml, "utf-8");
+  writeFileSync(join(OUT, "summary.json"), summaryJson, "utf-8");
 
   console.log(
     `Token Radar: ${total} protocols, ${withToken} with a token, ${candidates.length} no-token candidates.`,
   );
   console.log(`Top 5: ${candidates.slice(0, 5).map((c) => `${c.name} (${c.score})`).join(" | ")}`);
-  console.log(`Wrote dashboard/index.html, out/data.json, out/summary.json`);
+  console.log(`Wrote ${OUT}/dashboard/index.html, ${OUT}/out/data.json, ${OUT}/out/summary.json (+ root copies)`);
 }
 
 // ---------------------------------------------------------------------------
